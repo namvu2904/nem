@@ -1,6 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit'
 import { setupListeners } from '@reduxjs/toolkit/dist/query'
-import { apiIndex } from './Slicer'
+import { apiIndex } from './slicer'
 
 export const store = configureStore({
   reducer: {
