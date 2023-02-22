@@ -1,6 +1,7 @@
 import React from 'react';
 import { Input, Form, Layout, Select, DatePicker,  InputNumber, Space, Button } from 'antd';
-import { validateMessages } from '@/pages/utils/requireMessages';
+import { validateMessages } from '@/utils/requireMessages';
+
 
 
 export default function Formtutor() {
@@ -15,7 +16,7 @@ form.resetFields()
     <div style={{paddingTop:30}}>
     <Form style={{ width: 450 ,margin:"0 auto"}} labelCol={{span:6}} wrapperCol={{span:18}} form = {form}
        onFinish={handleFinish}
-       validateMessages={validateMessages}
+       validateMessages ={validateMessages}
        >
       <Form.Item label="Name" name="name" rules={[{required: true}]}>
       <Input/>
