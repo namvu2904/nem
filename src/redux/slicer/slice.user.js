@@ -23,9 +23,17 @@ const extendedApi = apiIndex.injectEndpoints({
         method:"DELETE",
       }),
       invalidatesTags:["User"]
+    }),
+    editUser:builder.mutation({
+      query:(data) => ({
+        url:`users/${data.id}`,
+        method: "PUT",
+        body: data
+      }),
+      invalidatesTags:["User"]
     })
   }),
   overrideExisting: false,
 }) 
 
-export const { useGetUsersQuery, useAddUserMutation, useDeleteUserMutation } = extendedApi
+export const { useGetUsersQuery, useAddUserMutation, useDeleteUserMutation, useEditUserMutation } = extendedApi
