@@ -1,16 +1,23 @@
 import React from 'react';
-import { Input, Form, Layout, Select, DatePicker,  InputNumber, Space, Button } from 'antd';
+import { Input, Form, Layout, Select, DatePicker,  InputNumber, Space, Button, message } from 'antd';
 import { validateMessages } from '@/utils/requireMessages';
+import { useAddUserMutation } from '@/redux/Slicer/slice.user';
+
 
 
 
 export default function Formtutor() {
+const [addUser, {isLoading}] = useAddUserMutation()
 const[form] = Form.useForm()
 const handleFinish= (values) => {
   console.log(values)
-}
-const handleClear = () => {
-form.resetFields()
+  addUser(values).unwrap().then(res => {
+    message.success("User added")
+  }).catch(err =>{
+    console.log(err)
+    message.error("Failed to add user")
+  })
+  console.log(values)
 }
   return (
     <div style={{paddingTop:30}}>
@@ -38,12 +45,10 @@ form.resetFields()
       <Form.Item label="Birth" name="birth" rules={[{required: true}]}>
       <DatePicker/>
       </Form.Item>
-      <Form.Item label="Experience" name="exp" rules={[{required: true}]}>
+      <Form.Item label="Experience" name="experience" rules={[{required: true}]}>
       <InputNumber min={0} step={1}/>
       </Form.Item>
       <div style={{textAlign:'right'}}><Button type="primary" htmlType="submit">Submit</Button></div>
-      <div style={{textAlign:'right', marginTop:10}}><Button type='primary' htmlType='Button'
-        onClick={handleClear}>Clear Form</Button></div>
       </Form>
 
     </div>
